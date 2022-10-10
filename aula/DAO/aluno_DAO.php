@@ -15,13 +15,15 @@ class AlunoDAO{
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
+        
+        $alunos = array();
 
         foreach($result as $reg):
             $curso =
             new Curso($reg['id_curso'], $reg['nome']);
             
             $aluno =
-                new Aluno($reg['idAluno'], $reg['nomeAluno'], $reg['idade'], 
+                new Aluno($reg['id_Aluno'], $reg['nome'], $reg['idade'], 
                 $reg['estrangeiro'], $reg[$curso]);
             array_push($alunos, $aluno);
         endforeach;
